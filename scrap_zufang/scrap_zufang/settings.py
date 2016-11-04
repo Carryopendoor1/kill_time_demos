@@ -27,6 +27,9 @@ MONGODB_DB = "jyy"
 MONGODB_COLLECTION = "jyy_scrapy"
 DOWNLOAD_DELAY = 1
 LOG_LEVEL = 'INFO'
+REDIS_SERVER = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -71,7 +74,7 @@ LOG_LEVEL = 'INFO'
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'scrap_zufang.pipelines.ScrapZufangPipeline': 300,
+    'scrap_zufang.pipelines.ScrapZufangPipeLine_Redis': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

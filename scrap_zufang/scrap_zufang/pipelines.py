@@ -8,6 +8,7 @@ from pymongo import MongoClient
 from scrap_zufang import settings
 from scrapy.exceptions import DropItem
 from scrapy import log
+from redis import StrictRedis
 
 
 class ScrapZufangPipeline(object):
@@ -33,3 +34,24 @@ class ScrapZufangPipeline(object):
             log.msg("Question added to MongoDB database!",
                     level=log.DEBUG, spider=spider)
         return item
+
+class ScrapZufangPipeLine_Redis(object):
+
+    def __init__(self):
+        host = settings.REDIS_SERVER
+        port = settings.REDIS_PORT
+        db = settings.REDIS_DB
+
+        self.r = StrictRedis(host, port, db)
+
+    def process_item(self, item, spider):
+        valid = True
+        for data in item:
+            if not data:
+                valid = False
+                raise DropItem('miss {}'.format(data))
+        if valid:
+            pipe = self.r.pipeline()
+            pipe.zadd('test', item['price'], str(item['name']).encode('utf-8'))
+            pipe.execute()
+
