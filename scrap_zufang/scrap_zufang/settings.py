@@ -25,6 +25,8 @@ MONGODB_SERVER = "localhost"
 MONGODB_PORT = 27017
 MONGODB_DB = "jyy"
 MONGODB_COLLECTION = "jyy_scrapy"
+DOWNLOAD_DELAY = 1
+LOG_LEVEL = 'INFO'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 

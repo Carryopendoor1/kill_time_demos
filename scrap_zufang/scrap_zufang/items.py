@@ -14,3 +14,4 @@ class ScrapZufangItem(scrapy.Item):
     name = scrapy.Field()
     url = scrapy.Field()
     price = scrapy.Field()
+    city = scrapy.Field()
